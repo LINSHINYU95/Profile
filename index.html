@@ -35,7 +35,7 @@
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 7.5v9A2.5 2.5 0 0 0 5.5 19h13A2.5 2.5 0 0 0 21 16.5v-9A2.5 2.5 0 0 0 18.5 5h-13A2.5 2.5 0 0 0 3 7.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7.5l-9 6-9-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <!-- Header large avatar (右側獨立圓形頭貼) -->
-        <div class="hero-avatar hero-avatar--large" aria-hidden="false" title="個人頭貼">
+        <div class="hero-avatar hero-avatar--large" aria-hidden="false" title="個人頭貼" onclick="openImageModal(this)" role="button" tabindex="0" style="cursor:pointer" aria-label="打開頭貼預覽">
           <img src="5.JPG" alt="個人頭貼">
         </div>
       </div>
@@ -178,10 +178,17 @@
         const img = thumbElement.querySelector('img');
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
-        
+
         if (img) {
           modalImg.src = img.src;
           modalImg.alt = img.alt;
+          // If opening the header avatar, mark modal image as avatar for circular styling
+          if (thumbElement.classList && (thumbElement.classList.contains('hero-avatar') || thumbElement.classList.contains('hero-avatar--large'))) {
+            modalImg.classList.add('is-avatar');
+          } else {
+            modalImg.classList.remove('is-avatar');
+          }
+
           modal.classList.add('active');
           document.body.style.overflow = 'hidden';
         }
@@ -189,9 +196,11 @@
 
       function closeImageModal(event) {
         const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
         // 如果點擊的是模態框背景（不是內容部分），則關閉
         if (event === undefined || event.target === modal) {
           modal.classList.remove('active');
+          modalImg.classList.remove('is-avatar');
           document.body.style.overflow = 'auto';
         }
       }
