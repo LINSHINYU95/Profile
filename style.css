@@ -54,12 +54,18 @@ body{
 .about p{line-height:1.7;color:var(--muted)}
 
 .skills .skill-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.skills-container{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:16px}
 .skill-list li{display:block}
 .skill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .skill-name{font-weight:600}
 .skill-percent{color:var(--muted);font-weight:600}
 .bar{background:#e6e9f2;border-radius:999px;height:12px;overflow:hidden}
 .fill{height:100%;background:linear-gradient(90deg,var(--accent),#7c3aed)}
+
+/* Tag Cloud */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,rgba(79,70,229,0.05),rgba(124,58,237,0.05));border-radius:12px;min-height:180px}
+.tag{display:inline-block;padding:8px 14px;background:var(--card);border:1.5px solid rgba(79,70,229,0.2);color:var(--text);border-radius:20px;text-decoration:none;transition:all .2s;cursor:default;font-weight:500}
+.tag:hover{background:rgba(79,70,229,0.1);border-color:var(--accent);color:var(--accent);transform:scale(1.1)}
 
 .experience .timeline{display:grid;gap:16px}
 .experience .timeline{position:relative;margin-top:14px;padding-left:28px}
@@ -105,6 +111,7 @@ body{
 @media (max-width:900px){
   .portfolio .grid{grid-template-columns:repeat(2,1fr)}
   .nav-links{display:none}
+  .skills-container{grid-template-columns:1fr}
 }
 @media (max-width:600px){
   .portfolio .grid{grid-template-columns:1fr}
