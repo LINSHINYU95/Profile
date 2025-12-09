@@ -57,6 +57,11 @@ body{
 @media (max-width:900px){
   .hero-socials{justify-content:center}
 }
+.hero-top{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
 .nav-links{list-style:none;margin:0;padding:0;display:flex;gap:18px}
 .nav-links a{color:var(--muted);text-decoration:none}
 .hero{max-width:1000px;margin:28px auto 0;padding:18px}
