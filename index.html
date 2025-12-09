@@ -49,9 +49,9 @@
           <li>
             <div class="skill-top">
               <span class="skill-name">社交能力</span>
-              <span class="skill-percent">50%</span>
+              <span class="skill-percent">60%</span>
             </div>
-            <div class="bar"><div class="fill" style="width:50%"></div></div>
+            <div class="bar"><div class="fill" style="width:60%"></div></div>
           </li>
           <li>
             <div class="skill-top">
@@ -119,23 +119,37 @@
       <section id="portfolio" class="section portfolio">
         <h2>作品集</h2>
         <div class="grid">
-          <a class="card" href="#project-traditional" aria-label="專題：傳統意識形態與觀念對女性家庭角色的影響">
-            <div class="thumb"><img src="11.jpg" alt="傳統意識形態專題縮圖"></div>
+          <div class="card">
+            <div class="thumb" onclick="openImageModal(this)" role="button" tabindex="0" style="cursor: pointer;">
+              <img src="11.jpg" alt="傳統意識形態專題縮圖">
+            </div>
             <h4>傳統意識形態與觀念對女性家庭角色的影響</h4>
             <p class="card-desc">本專題報告「傳統意識形態與觀念對女性家庭角色的影響」旨在深入探討如「男主外、女主內」等根深蒂固的傳統觀念，在現代社會中如何持續規範並限制女性在家庭中的角色定位。本研究結合文獻探討與問卷分析，一方面藉由民法修正條文（1930、1985、2007年）的時間軸，分析女性在婚姻、財產、繼承權等法律地位上的演變，另一方面則透過問卷數據，探究大眾對於家庭經濟來源、夫妻財產管理及性別刻板印象的真實看法。報告結論指出，儘管法律與社會意識已逐步提升性別平等，但「男主外、女主內」等傳統觀念仍舊存在於現代人的意識中，因此本研究呼籲社會應持續加強宣導與教育，以期達成真正性別平權的和諧社會目標。</p>
-          </a>
-          <a class="card" href="#" aria-label="專題：關於地震你知道多少">
-            <div class="thumb"><img src="22.png" alt="關於地震專題縮圖"></div>
+          </div>
+          <div class="card">
+            <div class="thumb" onclick="openImageModal(this)" role="button" tabindex="0" style="cursor: pointer;">
+              <img src="22.png" alt="關於地震專題縮圖">
+            </div>
             <h4>關於地震你知道多少</h4>
             <p class="card-desc">本專題報告旨在提升大眾對「台灣地震」的認識與防災準備。報告從地理背景出發，解釋台灣位於環太平洋火山地震帶上，因菲律賓海板塊與歐亞大陸板塊的碰撞，導致地震頻繁發生，並簡述海嘯的成因機制。報告區分了震度（Magnitude）與芮氏規模（The Richter Scale）等基本知識，並分享了研究者對於花蓮 4 月 3 日地震的個人經歷與感受。最終，報告強調了地震無法避免，鼓勵民眾應正視此情況，並詳列了地震發生前、中、後（包含準備緊急避難包、保命三步驟：趴下、掩護、穩住）的必要防護措施，以期強化全民的防災韌性。</p>
-          </a>
-          <a class="card" href="#" aria-label="性別不設限課程成果展示">
-            <div class="thumb"><img src="33.png" alt="性別不設限成果展示縮圖"></div>
+          </div>
+          <div class="card">
+            <div class="thumb" onclick="openImageModal(this)" role="button" tabindex="0" style="cursor: pointer;">
+              <img src="33.png" alt="性別不設限成果展示縮圖">
+            </div>
             <h4>性別不設限課程成果展示</h4>
             <p class="card-desc">本次「性別不設限課程成果展現」以「傳統意識形態與觀念對女性家庭角色的影響」為專題研究主題，彙集了學員們在性別議題探究上的完整學習歷程與具體成果。成果內容涵蓋了運用康乃爾筆記法進行文獻探討、學習訪談與問卷設計的專業技巧，並透過實際問卷調查與交叉分析，深入了解現代社會對於女性角色、夫妻財產管理、家務分工等議題的真實看法。本展現不僅呈現了性別觀念在法律修正下的歷史演變，更透過數據分析和報導撰寫，證實了即便在現代，如「男主外、女主內」的傳統觀念仍舊存在，藉此喚起社會對持續推動性別平等意識、減少性別刻板印象的關注，展現學員們從理論學習到發想社會行動具體方案的全面學習能力。</p>
-          </a>
+          </div>
         </div>
       </section>
+      
+      <!-- Image Modal -->
+      <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <span class="modal-close" onclick="closeImageModal()">&times;</span>
+          <img id="modalImage" src="" alt="放大圖片">
+        </div>
+      </div>
 
       <section id="contact" class="section contact">
         <h2>聯絡方式</h2>
@@ -153,5 +167,36 @@
     <footer class="site-footer">
 
     </footer>
+
+    <script>
+      function openImageModal(thumbElement) {
+        const img = thumbElement.querySelector('img');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        
+        if (img) {
+          modalImg.src = img.src;
+          modalImg.alt = img.alt;
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeImageModal(event) {
+        const modal = document.getElementById('imageModal');
+        // 如果點擊的是模態框背景（不是內容部分），則關閉
+        if (event === undefined || event.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      }
+
+      // 按 Esc 鍵關閉模態框
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          closeImageModal();
+        }
+      });
+    </script>
   </body>
 </html>
